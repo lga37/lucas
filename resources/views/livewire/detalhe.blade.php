@@ -85,13 +85,13 @@
         @if ($ad->preco1)
         <div class="bg-blue-100 p-4 rounded shadow">
             <p class="text-4xl font-bold text-blue-700">R$ 5M</p>
-            <p class="text-xs">@money($ad->preco1) em {{ \Carbon\Carbon::parse($ad->prazo1)->format('d/m/Y H:i') }}</p>
+            <p class="text-xs">@money($ad->preco1) em {{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo1) }}</p>
         </div>
         @endif
         @if ($ad->preco2)
         <div class="bg-blue-100 p-4 rounded shadow">
             <p class="text-4xl font-bold text-blue-700">R$ 193K</p>
-            <p class="text-xs">@money($ad->preco2) em {{ \Carbon\Carbon::parse($ad->prazo2)->format('d/m/Y H:i') }}</p>
+            <p class="text-xs">@money($ad->preco2) em {{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo1) }}</p>
         </div>
         @endif
     </div>

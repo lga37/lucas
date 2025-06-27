@@ -119,7 +119,7 @@
         @if ($ad->preco1 > 0)
             <div class="flex flex-col">
                 <span class="text-center text-green-500 text-2xl font-bold">{{ kmbt($ad->preco1) }}</span>
-                <span class="text-center text-sm">{{ \Carbon\Carbon::parse($ad->prazo1)->format('d/m') }}
+                <span class="text-center text-sm">{{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo1) }}
             </div>
         @endif
     </td>
@@ -127,7 +127,7 @@
         @if ($ad->preco2 > 0)
             <div class="flex flex-col">
                 <span class="text-center text-green-900 text-2xl font-bold">{{ kmbt($ad->preco2) }}</span>
-                <span class="text-center text-sm">{{ \Carbon\Carbon::parse($ad->prazo2)->format('d/m') }}
+                <span class="text-center text-sm">{{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo2) }}
                 </span>
             </div>
         @endif
