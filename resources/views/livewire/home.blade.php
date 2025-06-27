@@ -163,36 +163,38 @@
                         </div>
 
                     @elseif ($modoBy === 'lista')
-                    <table class="table-auto min-w-full text-sm tracking-tight leading-tight font-sans">
-                        <thead>
-                            <tr class="h-8 bg-blue-200">
-                                <th class="p-0">
-                                    <input id="select-all" type="checkbox" 
-                                    value="{{ $ads->currentPage() }}" 
-                                    wire:key="{{ $ads->currentPage() }}" 
-                                    wire:model.live="selectPage"
-                                        class="rounded bg-gray-200 border-transparent focus:border-transparent focus:bg-gray-200 text-gray-700 focus:ring-1 focus:ring-offset-2 focus:ring-gray-500" />
-                                </th>
-                                @foreach ($this->columns as $column => $label)
-                                @if($this->showColumn($column))
-                                <th @if($column=='pracas' ) colspan="2" @elseif($column=='acoes' ) colspan="4" @endif
-                                    class="text-center text-black font-bold">
-                                    {{ $label }}
-                                </th>
-                                @endif
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                            @forelse ($ads as $ad)
-                            <x-tr-ads :ad="$ad" />
-                            @empty
-                            <tr>
-                                <td colspan="100%" class="text-center py-4">Sem registros</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                    <div class="relative overflow-x-auto">
+                        <table class="table-auto min-w-full text-sm tracking-tight leading-tight font-sans">
+                            <thead>
+                                <tr class="h-8 bg-blue-200">
+                                    <th class="p-0">
+                                        <input id="select-all" type="checkbox" 
+                                        value="{{ $ads->currentPage() }}" 
+                                        wire:key="{{ $ads->currentPage() }}" 
+                                        wire:model.live="selectPage"
+                                            class="rounded bg-gray-200 border-transparent focus:border-transparent focus:bg-gray-200 text-gray-700 focus:ring-1 focus:ring-offset-2 focus:ring-gray-500" />
+                                    </th>
+                                    @foreach ($this->columns as $column => $label)
+                                    @if($this->showColumn($column))
+                                    <th @if($column=='pracas' ) colspan="2" @elseif($column=='acoes' ) colspan="4" @endif
+                                        class="text-center text-black font-bold">
+                                        {{ $label }}
+                                    </th>
+                                    @endif
+                                    @endforeach
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 divide-solid">
+                                @forelse ($ads as $ad)
+                                <x-tr-ads :ad="$ad" />
+                                @empty
+                                <tr>
+                                    <td colspan="100%" class="text-center py-4">Sem registros</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                     @endif
                 </div>
             </div>
