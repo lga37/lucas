@@ -10,10 +10,10 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="flex items-center space-x-0 sm:-my-px sm:ms-10 sm:flex">
+                <!-- Navigation Links for desktop-->
+                <div class="flex items-center space-x-0 sm:-my-px sm:ms-10 sm:flex hidden inline-block print:hidden">
                     <x-nav-link 
-                    class="px-2 py-1 h-9 border border-blue-200 rounded-md text-blue-800 hover:bg-blue-200"
+                    class="px-2 py-1 h-9 border border-blue-200 rounded-md text-blue-800 hover:bg-blue-200 mr-2"
                     href="{{ route('home') }}" :active="request()->routeIs('home')">
                         BRASIL
                     </x-nav-link>
@@ -70,7 +70,7 @@
                                 }
                                 
                             @endphp
-                            <div class="grid grid-cols-{{ $qtd }} gap-1 border border-gray-300 rounded-md shadow-sm bg-white p-1">
+                            <div class="grid grid-cols-{{ $qtd }} gap-1 border border-gray-300 rounded-md shadow-sm bg-white p-1 dark:bg-gray-700">
                                 @foreach ($ufs as $uf)
                                     @php
                                         $isActive = request()->route('uf') === $uf->uf;
@@ -86,19 +86,18 @@
                             </div>
                         @endforeach
                     </div>
-                    
 
                     @guest
                     <div class="flex items-center ml-4 space-x-2">
                         <a
                         href="{{ route('login') }}"
-                        class="px-2 py-1 h-9 border border-blue-300 rounded-md text-blue-800 hover:bg-blue-200"
+                        class="px-2 py-1 h-9 border border-blue-300 rounded-md text-blue-800 hover:bg-blue-200 ml-2 dark:text-white"
                         >
                             Login
                         </a>
                         <a
                             href="{{ route('register') }}"
-                            class="px-2 py-1 h-9 border border-blue-300 rounded-md text-blue-800 hover:bg-blue-200"
+                            class="px-2 py-1 h-9 border border-blue-300 rounded-md text-blue-800 hover:bg-blue-200 mr-2 dark:text-white"
                         >
                             Register
                         </a>
@@ -107,7 +106,17 @@
                     </div>
 
                     @endguest
-
+                    <!-- With Alpine.js -->
+                    <button
+                        x-data="{ dark: document.documentElement.classList.contains('dark') }"
+                        @click="dark = !dark;
+                                document.documentElement.classList.toggle('dark');
+                                localStorage.setItem('theme', dark ? 'dark' : 'light')"
+                        class="px-3 py-1 px-2 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded"
+                    >
+                        <span x-show="!dark">🌞 Light</span>
+                        <span x-show="dark">🌙 Dark</span>
+                    </button>
                     @adm
                     <div class="flex items-center ml-4 space-x-2">
                     <x-nav-link class="px-2 py-1 h-9 border border-red-200 rounded-md text-red-800 hover:bg-red-200" href="#">Admin</x-nav-link>
@@ -118,9 +127,7 @@
 
 
                     </div>
-                    @endadm
-                    
-                    
+                    @endadm        
                 </div>
             </div>
             @auth
@@ -249,6 +256,24 @@
             <x-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
                 {{ __('home') }}
             </x-responsive-nav-link>
+
+             @guest
+                  <x-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                    {{ __('login') }}
+                </x-responsive-nav-link>
+                 <x-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+                    {{ __('register') }}
+                </x-responsive-nav-link>
+            @endguest
+
+                @adm
+                    @for ($i = 0; $i < 5; $i++)
+                       <x-responsive-nav-link href="#">
+                    {{ __('admin') }}
+                    </x-responsive-nav-link>
+                    @endfor
+                @endadm
+
         </div>
 
         <!-- Responsive Settings Options -->

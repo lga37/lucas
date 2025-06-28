@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data x-bind:class="{ 'dark': localStorage.theme === 'dark' }">
+
     {{-- <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,6 +66,8 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet">
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     
         <!-- Vite Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -75,7 +78,7 @@
     
 
 
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
         <x-banner />
 
         <div class="min-h-screen  bg-gray-100 dark:bg-gray-900">
