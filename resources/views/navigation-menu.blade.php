@@ -112,7 +112,7 @@
                         @click="dark = !dark;
                                 document.documentElement.classList.toggle('dark');
                                 localStorage.setItem('theme', dark ? 'dark' : 'light')"
-                        class="px-3 py-1 px-2 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded"
+                        class="px-3 py-1 px-2 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded sm:flex hidden"
                     >
                         <span x-show="!dark">🌞 Light</span>
                         <span x-show="dark">🌙 Dark</span>
@@ -238,6 +238,16 @@
             </div>
             @endauth
 
+                <button
+                        x-data="{ dark: document.documentElement.classList.contains('dark') }"
+                        @click="dark = !dark;
+                                document.documentElement.classList.toggle('dark');
+                                localStorage.setItem('theme', dark ? 'dark' : 'light')"
+                        class="px-1 py-1 text-black dark:text-white rounded block md:hidden md:flex"
+                    >
+                        <span x-show="!dark">🌞</span>
+                        <span x-show="dark">🌙</span>
+                </button>
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">

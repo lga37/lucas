@@ -88,22 +88,22 @@
                     <div x-data="{ open: false }" class="relative">
                         <!-- Inline region button -->
                         <button @click="open = !open"
-                                class="px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-800 text-sm hover:bg-gray-100">
+                                class="px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-800 text-sm hover:bg-gray-100 dark:text-white dark:bg-gray-700">
                             {{ $regionName }}
                         </button>
 
                         <!-- Inline dropdown (below the button) -->
                         <div x-show="open" @click.away="open = false"
                              x-transition
-                             class="absolute mt-1 z-10 bg-white border border-gray-200 rounded-md shadow-md p-2 w-56">
-                            <div class="flex flex-wrap gap-1">
+                             class="absolute mt-1 z-10 bg-white border border-gray-200 rounded-md shadow-md p-2 dark:bg-gray-700">
+                            <div class="flex-inline flex-wrap gap-1">
                                 @foreach ($ufs as $uf)
                                     @php
                                         $isActive = request()->route('uf') === $uf->uf;
                                     @endphp
                                     <a href="{{ route('byuf', ['uf' => $uf->uf]) }}"
-                                       class="text-center text-sm px-2 py-1 rounded border 
-                                       {{ $isActive ? 'font-bold border-blue-900 text-blue-900 bg-blue-200' : 'hover:bg-green-200 hover:text-green-800 hover:border-green-800' }}">
+                                       class="text-center text-sm px-2 py-1 mt-2 rounded border 
+                                       {{ $isActive ? 'font-bold border-blue-900 text-blue-900 bg-blue-200' : 'hover:bg-green-200 hover:text-green-800 hover:border-green-800 dark:bg-gray-700 block' }}">
                                         {{ $uf->uf }}
                                     </a>
                                 @endforeach
@@ -188,7 +188,7 @@
             </select>
 
             <button onclick="window.print()" class="px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 print:hidden">
-                Print Table
+                Print
             </button>
 
 
