@@ -4,6 +4,7 @@ import typography from '@tailwindcss/typography';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class', // ✅ Enable class-based dark mode
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/laravel/jetstream/**/*.blade.php',
@@ -16,6 +17,11 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+        },
+    },
+    variants: {
+        extend: {
+            display: ['print'], // 👈 enable print variant
         },
     },
 

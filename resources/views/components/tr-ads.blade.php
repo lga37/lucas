@@ -1,4 +1,4 @@
-<tr wire:key="ad-{{ $ad->id }}" class="odd:bg-white hover:bg-gray-200 even:bg-gray-100 border-b h-14">
+<tr wire:key="ad-{{ $ad->id }}" class=""odd:bg-white even:bg-gray-50 dark:odd:bg-gray-900 dark:even:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
 
     <td class="px-1 py-0 leading-5 whitespace-no-wrap">
         <input type="checkbox" wire:model.live="selectedIds" value="{{ $ad->id }}">
@@ -143,27 +143,27 @@
         $trashed = auth()->check() ? auth()->user()->hasStatus($ad, \App\Garimpia\Enums\AdUserStatus::TRASH) : false;
 
     @endphp
-    <td>
+    <td class="print:hidden">
 
         <button wire:click="toggleAdStatus({{ $ad->id }}, 1)">
             @if ($liked) ❤️ @else 🤍 @endif
         </button>
     </td>
 
-    <td>
+    <td class="print:hidden">
         <button x-data @click="$dispatch('copy-url', { url: '{{ route('byid', ['ad' => $ad->id]) }}' })"
             class="text-blue-500 hover:text-blue-700" title="Compartilhar">
             🔗
         </button>
     </td>
 
-    <td>
+    <td class="print:hidden">
         <button wire:click="toggleAdStatus({{ $ad->id }}, 2)">
             @if ($alerted) 🔔 @else 👁️ @endif
         </button>
     </td>
 
-    <td>
+    <td class="print:hidden">
         <button wire:click="toggleAdStatus({{ $ad->id }}, 3)">
             @if ($trashed) ❌ @else 🗑️ @endif
         </button>

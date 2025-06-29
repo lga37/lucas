@@ -25,7 +25,97 @@
 
 <div class="py-2">
     <div class="max-w-12xl mx-auto">
-        <h2 class="mb-4 font-semibold text-xl text-gray-800 leading-tight">
+
+
+        <!-- Mobile Dropdown Menu -->
+        <div class="block md:hidden md:flex items-center space-x-4 px-4 py-2 print:hidden">
+
+            <!-- BRASIL Link -->
+            <x-nav-link class="px-2 py-1 h-9 border border-blue-200 rounded-md text-blue-800 hover:bg-blue-200"
+                        href="{{ route('home') }}" :active="request()->routeIs('home')">
+                BRASIL
+            </x-nav-link>
+           <!-- Wrapper for all region buttons (inline on mobile) -->
+            <div class="block md:hidden mt-4 flex flex-wrap gap-2">
+
+                @php
+                    $ufs = collect([
+                        ['uf' => 'AC', 'regiao_id' => 1],
+                        ['uf' => 'AL', 'regiao_id' => 2],
+                        ['uf' => 'AM', 'regiao_id' => 1],
+                        ['uf' => 'AP', 'regiao_id' => 1],
+                        ['uf' => 'BA', 'regiao_id' => 2],
+                        ['uf' => 'CE', 'regiao_id' => 2],
+                        ['uf' => 'DF', 'regiao_id' => 3],
+                        ['uf' => 'ES', 'regiao_id' => 4],
+                        ['uf' => 'GO', 'regiao_id' => 3],
+                        ['uf' => 'MA', 'regiao_id' => 2],
+                        ['uf' => 'MG', 'regiao_id' => 4],
+                        ['uf' => 'MS', 'regiao_id' => 3],
+                        ['uf' => 'MT', 'regiao_id' => 3],
+                        ['uf' => 'PA', 'regiao_id' => 1],
+                        ['uf' => 'PB', 'regiao_id' => 2],
+                        ['uf' => 'PE', 'regiao_id' => 2],
+                        ['uf' => 'PI', 'regiao_id' => 2],
+                        ['uf' => 'PR', 'regiao_id' => 5],
+                        ['uf' => 'RJ', 'regiao_id' => 4],
+                        ['uf' => 'RN', 'regiao_id' => 2],
+                        ['uf' => 'RO', 'regiao_id' => 1],
+                        ['uf' => 'RR', 'regiao_id' => 1],
+                        ['uf' => 'RS', 'regiao_id' => 5],
+                        ['uf' => 'SC', 'regiao_id' => 5],
+                        ['uf' => 'SE', 'regiao_id' => 2],
+                        ['uf' => 'SP', 'regiao_id' => 4],
+                        ['uf' => 'TO', 'regiao_id' => 1],
+                    ])->map(fn($uf) => (object) $uf);
+
+                    $ufsGrouped = $ufs->sortBy('uf')->sortByDesc('regiao_id')->groupBy('regiao_id');
+                @endphp
+
+                @foreach ($ufsGrouped as $regiao_id => $ufs)
+                    @php
+                        $regionName = match($regiao_id) {
+                            1 => 'Norte',
+                            2 => 'Nordeste',
+                            3 => 'Centro-Oeste',
+                            4 => 'Sudeste',
+                            5 => 'Sul',
+                            default => 'Região',
+                        };
+                    @endphp
+
+                    <!-- Region button + dropdown -->
+                    <div x-data="{ open: false }" class="relative">
+                        <!-- Inline region button -->
+                        <button @click="open = !open"
+                                class="px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-800 text-sm hover:bg-gray-100 dark:text-white dark:bg-gray-700">
+                            {{ $regionName }}
+                        </button>
+
+                        <!-- Inline dropdown (below the button) -->
+                        <div x-show="open" @click.away="open = false"
+                             x-transition
+                             class="absolute mt-1 z-10 bg-white border border-gray-200 rounded-md shadow-md p-2 dark:bg-gray-700">
+                            <div class="flex-inline flex-wrap gap-1">
+                                @foreach ($ufs as $uf)
+                                    @php
+                                        $isActive = request()->route('uf') === $uf->uf;
+                                    @endphp
+                                    <a href="{{ route('byuf', ['uf' => $uf->uf]) }}"
+                                       class="text-center text-sm px-2 py-1 mt-2 rounded border 
+                                       {{ $isActive ? 'font-bold border-blue-900 text-blue-900 bg-blue-200' : 'hover:bg-green-200 hover:text-green-800 hover:border-green-800 dark:bg-gray-700 block' }}">
+                                        {{ $uf->uf }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+
+        <h2 class="mb-4 font-semibold text-xl text-gray-800 leading-tight px-4 dark:text-white print:hidden">
             {{ $ads->total() }} Anúncios de Imóveis em Leilão, garimpados com Inteligencia Artificial (IA) -
 
 
@@ -44,16 +134,16 @@
         </h2>
 
         @if($ads->total() > 0)
-        <div class="flex flex-wrap items-center gap-2 mb-2 px-2">
+        <div class="flex flex-wrap items-center gap-2 mb-2 px-2 print:hidden">
             <!-- Tipos -->
             <div x-data="{ open: false }" x-cloak class="relative">
                 <button @click="open = !open"
-                    class="px-3 py-2 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                    class="px-3 py-2 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700">
                     Tipos
                 </button>
 
                 <div x-show="open" @click.outside="open = false"
-                    class="absolute z-10 mt-2 w-48 bg-white border rounded shadow-lg p-2" x-transition>
+                    class="absolute z-10 mt-2 w-48 bg-white border rounded shadow-lg p-2 dark:bg-gray-700" x-transition>
                     @foreach ($this->tipos as $tipo)
                     <label class="flex items-center space-x-2 py-1">
                         <input type="checkbox" wire:model.live="tipos" value="{{ $tipo }}">
@@ -66,12 +156,12 @@
             <!-- Campos -->
             <div x-data="{ open: false }" x-cloak class="relative">
                 <button @click="open = !open"
-                    class="px-3 py-2 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                    class="px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700">
                     Campos
                 </button>
 
                 <div x-show="open" @click.outside="open = false"
-                    class="absolute z-10 mt-2 w-48 bg-white border rounded shadow-lg p-2" x-transition>
+                    class="absolute z-10 mt-2 w-48 bg-white border rounded shadow-lg p-2 dark:bg-gray-700" x-transition>
                     @foreach ($this->columns as $col => $label)
                     <label class="flex items-center space-x-2 py-1">
                         <input type="checkbox" wire:model.live="selectedColumns" value="{{ $col }}">
@@ -83,7 +173,7 @@
 
             <!-- Ordenação -->
             <select wire:model.live="sortBy"
-                class="px-3 py-2 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                class="px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700">
                 @foreach ($this->sortable as $key => $option)
                 <option value="{{ $key }}">{{ $option['label'] }}</option>
                 @endforeach
@@ -91,11 +181,16 @@
 
             <!-- Modos -->
             <select wire:model.live="modoBy"
-                class="px-3 py-2 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                class="px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700">
                 @foreach ($this->modos as $key => $modo)
                 <option value="{{ $key }}">{{ $modo['label'] }}</option>
                 @endforeach
             </select>
+
+            <button onclick="window.print()" class="px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 print:hidden">
+                Print
+            </button>
+
 
             <!-- Paginação -->
             <div class="ml-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-700">
@@ -103,7 +198,7 @@
                 <!-- Per Page -->
                 <div class="flex items-center gap-2">
                     <select id="perPage" wire:model.live="perPage"
-                        class="min-w-[90px] px-3 py-2 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                        class="min-w-[90px] px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:text-white dark:bg-gray-700">
                         <option value="10">20/pág</option>
                         <option value="50">50/pág</option>
                         <option value="100">100/pág</option>
@@ -122,10 +217,10 @@
                     <button
                         wire:click="previousPage"
                         wire:loading.attr="disabled"
-                        class="px-3 py-2 border text-sm rounded-md transition-all
+                        class="px-1 py-1 border text-sm rounded-md transition-all
                                focus:outline-none focus:ring-1 focus:ring-blue-500
                                disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-50
-                               enabled:text-blue-600 enabled:border-gray-300 enabled:bg-white enabled:hover:bg-gray-100"
+                               enabled:text-blue-600 enabled:border-gray-300 enabled:bg-white enabled:hover:bg-gray-100 dark:bg-gray-700"
                         {{ $ads->onFirstPage() ? 'disabled' : '' }}
                     >
                         ← Anterior
@@ -135,10 +230,10 @@
                     <button
                         wire:click="nextPage"
                         wire:loading.attr="disabled"
-                        class="px-3 py-2 border text-sm rounded-md transition-all
+                        class="px-1 py-1 border text-sm rounded-md transition-all
                                focus:outline-none focus:ring-1 focus:ring-blue-500
                                disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-50
-                               enabled:text-blue-600 enabled:border-gray-300 enabled:bg-white enabled:hover:bg-gray-100"
+                               enabled:text-blue-600 enabled:border-gray-300 enabled:bg-white enabled:hover:bg-gray-100 dark:bg-gray-700"
                         {{ !$ads->hasMorePages() ? 'disabled' : '' }}
                     >
                         Próximo →
@@ -164,27 +259,27 @@
 
                     @elseif ($modoBy === 'lista')
                     <div class="relative overflow-x-auto">
-                        <table class="table-auto min-w-full text-sm tracking-tight leading-tight font-sans">
-                            <thead>
-                                <tr class="h-8 bg-blue-200">
+                        <table class="table-auto min-w-full text-sm tracking-tight leading-tight font-sans text-gray-900 dark:text-gray-100">
+                            <thead class="bg-gray-100 dark:bg-gray-800">
+                                <tr class="h-8 dark:bg-black-700">
                                     <th class="p-0">
                                         <input id="select-all" type="checkbox" 
                                         value="{{ $ads->currentPage() }}" 
                                         wire:key="{{ $ads->currentPage() }}" 
                                         wire:model.live="selectPage"
-                                            class="rounded bg-gray-200 border-transparent focus:border-transparent focus:bg-gray-200 text-gray-700 focus:ring-1 focus:ring-offset-2 focus:ring-gray-500" />
+                                            class="rounded bg-gray-200 dark:bg-gray-700 border-transparent focus:border-transparent focus:bg-gray-200 text-gray-700 focus:ring-1 focus:ring-offset-2 focus:ring-gray-500" />
                                     </th>
                                     @foreach ($this->columns as $column => $label)
                                     @if($this->showColumn($column))
                                     <th @if($column=='pracas' ) colspan="2" @elseif($column=='acoes' ) colspan="4" @endif
-                                        class="text-center text-black font-bold">
+                                        class="text-center text-black font-bold text-gray-900 dark:text-gray-100">
                                         {{ $label }}
                                     </th>
                                     @endif
                                     @endforeach
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200 divide-solid">
+                            <tbody class="divide-y divide-gray-200 divide-solid dark:divide-gray-700 bg-white dark:bg-gray-900">
                                 @forelse ($ads as $ad)
                                 <x-tr-ads :ad="$ad" />
                                 @empty

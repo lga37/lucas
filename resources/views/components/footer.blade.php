@@ -7,10 +7,10 @@
 </div>
 
 
-<footer class="bg-gray-900 text-gray-200 py-3">
+<footer class="bg-gray-900 text-gray-200 py-3 print:hidden">
     <div class="max-w-7xl mx-auto px-4">
 
-        <div class="grid mt-10 grid-cols-4 gap-8 text-sm">
+        <div class="grid mt-10 grid-cols-4 gap-4 text-sm">
 
             <!-- Coluna 1 -->
             <div>
@@ -77,7 +77,7 @@
 
         </div>
 
-        <div class="grid grid-cols-4 mt-8 gap-8 text-sm">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 gap-4 text-sm">
 
             <!-- Coluna 1 -->
             <div>

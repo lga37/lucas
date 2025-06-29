@@ -1,48 +1,49 @@
 <div class="max-w-7xl mx-auto p-4 space-y-6">
     <!-- Breadcrumbs -->
-    <nav class="flex items-center text-sm text-gray-600" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
-                <a href="/" class="inline-flex items-center hover:underline">
-                    Brasil
-                </a>
-            </li>
+    <nav class="flex items-center text-sm text-gray-600 print:hidden" aria-label="Breadcrumb">
 
-            <li class="flex items-center">
-                <span class="mx-2 text-gray-400">/</span>
-                <a href="#" class="hover:underline">{{ $ad->uf }}</a>
-            </li>
+        <ol class="flex flex-wrap md:inline-flex items-center gap-y-1 space-x-0 md:space-x-2 rtl:space-x-reverse text-sm">
+    <li class="inline-flex items-center">
+        <a href="/" class="inline-flex items-center hover:underline dark:text-white pl-2 pr-2">
+            Brasil
+        </a>
+    </li>
 
-            <li class="flex items-center">
-                <span class="mx-2 text-gray-400">/</span>
-                <a href="#" class="hover:underline">{{ $ad->cidade }}</a>
-            </li>
+    <li class="flex items-center m-0 md:m-2">
+        <span class="mx-1 text-gray-400">/</span>
+        <a href="#" class="hover:underline dark:text-white pl-2 pr-2">{{ $ad->uf }}</a>
+    </li>
 
-            <li class="flex items-center">
-                <span class="mx-2 text-gray-400">/</span>
-                <a href="#" class="hover:underline">{{ $ad->bairro }}</a>
-            </li>
+    <li class="flex items-center m-0 md:m-2">
+        <span class="mx-1 text-gray-400">/</span>
+        <a href="#" class="hover:underline dark:text-white pl-2 pr-2">{{ $ad->cidade }}</a>
+    </li>
 
-            <li class="flex items-center">
-                <span class="mx-2 text-gray-400">/</span>
-                <span class="text-gray-500">{{ $ad->rua }}</span>
-            </li>
+    <li class="flex items-center m-0 md:m-2">
+        <span class="mx-1 text-gray-400">/</span>
+        <a href="#" class="hover:underline dark:text-white pl-2 pr-2">{{ $ad->bairro }}</a>
+    </li>
 
-            <li class="flex items-center">
-                <span class="mx-2 text-gray-400">#</span>
-                <span class="text-gray-500">{{ $ad->id }}</span>
-            </li>
+    <li class="flex items-center m-0 md:m-2">
+        <span class="mx-1 text-gray-400 dark:text-white">/</span>
+        <span class="text-gray-500 dark:text-white pl-2 pr-2">{{ $ad->rua }}</span>
+    </li>
 
-        </ol>
+    <li class="flex items-center m-0 md:m-2">
+        <span class="mx-1 text-gray-400 dark:text-white">#</span>
+        <span class="text-gray-500 dark:text-white pl-2 pr-2">{{ $ad->id }}</span>
+    </li>
+</ol>
+
     </nav>
 
 
     <!-- Título -->
-    <h1 class="text-2xl font-bold text-gray-800">{{ $ad->nome }}</h1>
+    <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ $ad->nome }}</h1>
 
     <!-- Localização / Maps -->
     <a href="https://www.google.com/maps/search/{{ $ad->nome }}" target="_blank"
-        class="inline-flex items-center text-blue-600 hover:underline">
+        class="inline-flex items-center text-blue-600 hover:underline print:hidden">
         <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round"
                 d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
@@ -79,19 +80,22 @@
     <a href="{{ $ad->url }}" target="_blank" title="Leiloeiro" class="" role="button">
     Imprimir
     </a>
+    <button onclick="window.print()" class="px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 print:hidden">
+    Print
+    </button>
 
     <!-- Preços -->
     <div class="flex flex-wrap items-center gap-6">
         @if ($ad->preco1)
         <div class="bg-blue-100 p-4 rounded shadow">
             <p class="text-4xl font-bold text-blue-700">R$ 5M</p>
-            <p class="text-xs">@money($ad->preco1) em {{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo1) }}</p>
+            <p class="text-xs dark:text-gray-600">@money($ad->preco1) em {{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo1) }}</p>
         </div>
         @endif
         @if ($ad->preco2)
         <div class="bg-blue-100 p-4 rounded shadow">
             <p class="text-4xl font-bold text-blue-700">R$ 193K</p>
-            <p class="text-xs">@money($ad->preco2) em {{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo1) }}</p>
+            <p class="text-xs dark:text-gray-600">@money($ad->preco2) em {{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo1) }}</p>
         </div>
         @endif
     </div>
