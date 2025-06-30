@@ -26,47 +26,27 @@
 <div class="py-2">
     <div class="max-w-12xl mx-auto">
 
-
-        <!-- Mobile Dropdown Menu -->
-        <div class="block md:hidden md:flex items-center space-x-4 px-4 py-2 print:hidden">
-
-            <!-- BRASIL Link -->
-            <x-nav-link class="px-2 py-1 h-9 border border-blue-200 rounded-md text-blue-800 hover:bg-blue-200"
-                        href="{{ route('home') }}" :active="request()->routeIs('home')">
-                BRASIL
-            </x-nav-link>
-           <!-- Wrapper for all region buttons (inline on mobile) -->
-            <div class="block md:hidden mt-4 flex flex-wrap gap-2">
+        <!-- Mobile Dropdown Menu with Attractive Background -->
+        <div class="block md:hidden px-4 py-5 space-y-4 rounded-xl shadow-md bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 border border-blue-200 dark:border-gray-700 print:hidden">
+            <!-- Wrapper for Region Buttons -->
+            <div class="flex flex-wrap gap-2 justify-start">
+                <!-- BRASIL Link -->
+                <x-nav-link class="w-16 text-center px-2 py-1 text-sm border border-blue-300 bg-white rounded-md text-blue-900 font-semibold shadow-sm hover:bg-blue-200 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-600"
+                            href="{{ route('home') }}" :active="request()->routeIs('home')">
+                    Brasil
+                </x-nav-link>
 
                 @php
                     $ufs = collect([
-                        ['uf' => 'AC', 'regiao_id' => 1],
-                        ['uf' => 'AL', 'regiao_id' => 2],
-                        ['uf' => 'AM', 'regiao_id' => 1],
-                        ['uf' => 'AP', 'regiao_id' => 1],
-                        ['uf' => 'BA', 'regiao_id' => 2],
-                        ['uf' => 'CE', 'regiao_id' => 2],
-                        ['uf' => 'DF', 'regiao_id' => 3],
-                        ['uf' => 'ES', 'regiao_id' => 4],
-                        ['uf' => 'GO', 'regiao_id' => 3],
-                        ['uf' => 'MA', 'regiao_id' => 2],
-                        ['uf' => 'MG', 'regiao_id' => 4],
-                        ['uf' => 'MS', 'regiao_id' => 3],
-                        ['uf' => 'MT', 'regiao_id' => 3],
-                        ['uf' => 'PA', 'regiao_id' => 1],
-                        ['uf' => 'PB', 'regiao_id' => 2],
-                        ['uf' => 'PE', 'regiao_id' => 2],
-                        ['uf' => 'PI', 'regiao_id' => 2],
-                        ['uf' => 'PR', 'regiao_id' => 5],
-                        ['uf' => 'RJ', 'regiao_id' => 4],
-                        ['uf' => 'RN', 'regiao_id' => 2],
-                        ['uf' => 'RO', 'regiao_id' => 1],
-                        ['uf' => 'RR', 'regiao_id' => 1],
-                        ['uf' => 'RS', 'regiao_id' => 5],
-                        ['uf' => 'SC', 'regiao_id' => 5],
-                        ['uf' => 'SE', 'regiao_id' => 2],
-                        ['uf' => 'SP', 'regiao_id' => 4],
-                        ['uf' => 'TO', 'regiao_id' => 1],
+                        ['uf' => 'AC', 'regiao_id' => 1], ['uf' => 'AL', 'regiao_id' => 2], ['uf' => 'AM', 'regiao_id' => 1],
+                        ['uf' => 'AP', 'regiao_id' => 1], ['uf' => 'BA', 'regiao_id' => 2], ['uf' => 'CE', 'regiao_id' => 2],
+                        ['uf' => 'DF', 'regiao_id' => 3], ['uf' => 'ES', 'regiao_id' => 4], ['uf' => 'GO', 'regiao_id' => 3],
+                        ['uf' => 'MA', 'regiao_id' => 2], ['uf' => 'MG', 'regiao_id' => 4], ['uf' => 'MS', 'regiao_id' => 3],
+                        ['uf' => 'MT', 'regiao_id' => 3], ['uf' => 'PA', 'regiao_id' => 1], ['uf' => 'PB', 'regiao_id' => 2],
+                        ['uf' => 'PE', 'regiao_id' => 2], ['uf' => 'PI', 'regiao_id' => 2], ['uf' => 'PR', 'regiao_id' => 5],
+                        ['uf' => 'RJ', 'regiao_id' => 4], ['uf' => 'RN', 'regiao_id' => 2], ['uf' => 'RO', 'regiao_id' => 1],
+                        ['uf' => 'RR', 'regiao_id' => 1], ['uf' => 'RS', 'regiao_id' => 5], ['uf' => 'SC', 'regiao_id' => 5],
+                        ['uf' => 'SE', 'regiao_id' => 2], ['uf' => 'SP', 'regiao_id' => 4], ['uf' => 'TO', 'regiao_id' => 1],
                     ])->map(fn($uf) => (object) $uf);
 
                     $ufsGrouped = $ufs->sortBy('uf')->sortByDesc('regiao_id')->groupBy('regiao_id');
@@ -75,35 +55,32 @@
                 @foreach ($ufsGrouped as $regiao_id => $ufs)
                     @php
                         $regionName = match($regiao_id) {
-                            1 => 'Norte',
-                            2 => 'Nordeste',
-                            3 => 'Centro-Oeste',
-                            4 => 'Sudeste',
-                            5 => 'Sul',
-                            default => 'Região',
+                            1 => 'Norte', 2 => 'Nordeste', 3 => 'Centro-Oeste', 4 => 'Sudeste', 5 => 'Sul',
                         };
                     @endphp
 
-                    <!-- Region button + dropdown -->
+                    <!-- Region Dropdown -->
                     <div x-data="{ open: false }" class="relative">
-                        <!-- Inline region button -->
+                        <!-- Region Button -->
                         <button @click="open = !open"
-                                class="px-3 py-1 border border-gray-300 rounded-md bg-white text-gray-800 text-sm hover:bg-gray-100 dark:text-white dark:bg-gray-700">
-                            {{ $regionName }}
+                                class="w-20 px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-800 dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                            {{ Str::limit($regionName, 6, '') }}
                         </button>
 
-                        <!-- Inline dropdown (below the button) -->
+                        <!-- Dropdown -->
                         <div x-show="open" @click.away="open = false"
                              x-transition
-                             class="absolute mt-1 z-10 bg-white border border-gray-200 rounded-md shadow-md p-2 dark:bg-gray-700">
-                            <div class="flex-inline flex-wrap gap-1">
+                             class="absolute left-0 mt-2 z-50 min-w-max bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-md shadow-lg p-2">
+                            <div class="flex flex-wrap gap-1">
                                 @foreach ($ufs as $uf)
                                     @php
                                         $isActive = request()->route('uf') === $uf->uf;
                                     @endphp
                                     <a href="{{ route('byuf', ['uf' => $uf->uf]) }}"
-                                       class="text-center text-sm px-2 py-1 mt-2 rounded border 
-                                       {{ $isActive ? 'font-bold border-blue-900 text-blue-900 bg-blue-200' : 'hover:bg-green-200 hover:text-green-800 hover:border-green-800 dark:bg-gray-700 block' }}">
+                                       class="w-12 text-center text-sm px-2 py-1 rounded border transition-all
+                                            {{ $isActive 
+                                                ? 'font-bold border-blue-600 text-blue-800 bg-blue-100 dark:bg-blue-600 dark:text-white' 
+                                                : 'hover:bg-green-100 hover:text-green-800 hover:border-green-500 dark:hover:bg-green-900 dark:text-white border-gray-300 dark:border-gray-600' }}">
                                         {{ $uf->uf }}
                                     </a>
                                 @endforeach
@@ -115,30 +92,34 @@
         </div>
 
 
-        <h2 class="mb-4 font-semibold text-xl text-gray-800 leading-tight px-4 dark:text-white print:hidden">
-            {{ $ads->total() }} Anúncios de Imóveis em Leilão, garimpados com Inteligencia Artificial (IA) -
+        <div class="px-4 py-3 mb-3 bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-lg shadow-md border border-blue-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 dark:border-gray-600 print:hidden mt-2">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white leading-snug mb-1">
+                {{ $ads->total() }}
+                <span class="text-blue-600 dark:text-blue-400">Anúncios de Imóveis</span> em Leilão
+            </h2>
 
+            <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 font-medium">
+                Garimpados com <span class="text-purple-600 dark:text-purple-400 font-semibold">Inteligência Artificial (IA)</span>
+                @if(isset($rota['bairro_name']))
+                    em <span class="text-gray-900 dark:text-white font-bold">{{ $rota['bairro_name'] }}</span>,
+                    {{ $rota['cidade_name'] }} / {{ $rota['uf_name'] }}
+                @elseif(isset($rota['cidade_name']))
+                    em <span class="text-gray-900 dark:text-white font-bold">{{ $rota['cidade_name'] }}</span> / {{ $rota['uf_name'] }}
+                @elseif(isset($rota['uf_name']))
+                    no estado de <span class="text-gray-900 dark:text-white font-bold">{{ $rota['uf_name'] }}</span>
+                @else
+                    em todo o <span class="text-gray-900 dark:text-white font-bold">Brasil</span>
+                @endif
+            </p>
+    </div>
 
-
-
-            @if(isset($rota['bairro_name']))
-            em <strong>{{ $rota['bairro_name'] }}</strong>, {{ $rota['cidade_name'] }} / {{ $rota['uf_name'] }}
-            @elseif(isset($rota['cidade_name']))
-            em <strong>{{ $rota['cidade_name'] }}</strong> / {{ $rota['uf_name'] }}
-            @elseif(isset($rota['uf_name']))
-            no estado de <strong>{{ $rota['uf_name'] }}</strong>
-            @else
-            no Brasil
-            @endif
-
-        </h2>
 
         @if($ads->total() > 0)
-        <div class="flex flex-wrap items-center gap-2 mb-2 px-2 print:hidden">
+        <div class="flex flex-wrap items-center gap-1 mb-3 px-3 py-3 rounded-xl shadow-md border border-gray-200 bg-gradient-to-r from-white via-blue-50 to-white dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 print:hidden">
             <!-- Tipos -->
             <div x-data="{ open: false }" x-cloak class="relative">
                 <button @click="open = !open"
-                    class="px-3 py-2 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700">
+                    class="w-20 px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-800 dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
                     Tipos
                 </button>
 
@@ -156,12 +137,12 @@
             <!-- Campos -->
             <div x-data="{ open: false }" x-cloak class="relative">
                 <button @click="open = !open"
-                    class="px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700">
+                    class="w-20 px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-800 dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
                     Campos
                 </button>
 
                 <div x-show="open" @click.outside="open = false"
-                    class="absolute z-10 mt-2 w-48 bg-white border rounded shadow-lg p-2 dark:bg-gray-700" x-transition>
+                    class="w-20 px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-800 dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition" x-transition>
                     @foreach ($this->columns as $col => $label)
                     <label class="flex items-center space-x-2 py-1">
                         <input type="checkbox" wire:model.live="selectedColumns" value="{{ $col }}">
@@ -181,7 +162,7 @@
 
             <!-- Modos -->
             <select wire:model.live="modoBy"
-                class="px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700">
+                class="w-20 pr-5 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-800 dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
                 @foreach ($this->modos as $key => $modo)
                 <option value="{{ $key }}">{{ $modo['label'] }}</option>
                 @endforeach
@@ -193,7 +174,7 @@
 
 
             <!-- Paginação -->
-            <div class="ml-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-700">
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-700 mt-3">
 
                 <!-- Per Page -->
                 <div class="flex items-center gap-2">
@@ -242,8 +223,6 @@
                 </div>
 
             </div>
-
-
         </div>
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
