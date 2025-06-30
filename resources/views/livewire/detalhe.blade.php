@@ -85,20 +85,22 @@
     </button>
 
     <!-- Preços -->
-    <div class="flex flex-wrap items-center gap-6">
-        @if ($ad->preco1)
-        <div class="bg-blue-100 p-4 rounded shadow">
-            <p class="text-4xl font-bold text-blue-700">R$ 5M</p>
-            <p class="text-xs dark:text-gray-600">@money($ad->preco1) em {{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo1) }}</p>
+        <div class="flex flex-nowrap overflow-x-auto items-center gap-4">
+            @if ($ad->preco1)
+            <div class="min-w-[150px] bg-blue-100 p-4 rounded shadow shrink-0">
+                <p class="text-4xl font-bold text-blue-700">R$ 5M</p>
+                <p class="text-xs text-gray-600">@money($ad->preco1) em {{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo1) }}</p>
+            </div>
+            @endif
+
+            @if ($ad->preco2)
+            <div class="min-w-[150px] bg-blue-100 p-4 rounded shadow shrink-0">
+                <p class="text-4xl font-bold text-blue-700">R$ 193K</p>
+                <p class="text-xs text-gray-600">@money($ad->preco2) em {{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo2) }}</p>
+            </div>
+            @endif
         </div>
-        @endif
-        @if ($ad->preco2)
-        <div class="bg-blue-100 p-4 rounded shadow">
-            <p class="text-4xl font-bold text-blue-700">R$ 193K</p>
-            <p class="text-xs dark:text-gray-600">@money($ad->preco2) em {{ \Carbon\Carbon::createFromFormat('d/m', $ad->prazo1) }}</p>
-        </div>
-        @endif
-    </div>
+
 
     <!-- Descrição -->
     <div class="">

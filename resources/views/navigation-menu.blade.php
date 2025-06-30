@@ -240,15 +240,23 @@
             <div class="flex items-center ml-2 space-x-2 sm:hidden">
                         <a
                         href="{{ route('login') }}"
-                        class="w-20 px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition text-blue-800 hover:bg-blue-200"
+                        class="px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition text-blue-800 hover:bg-blue-200"
                         >
-                            Login
+                         <svg class="w-5 h-5 text-lime-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6A2.25 2.25 0 005.25 5.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3-3h-7.5m0 0l3-3m-3 3l3 3" />
+                          </svg>
+
                         </a>
                         <a
                             href="{{ route('register') }}"
-                            class="w-20 px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition text-blue-800 hover:bg-blue-200"
+                            class="px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition text-blue-800 hover:bg-blue-200"
                         >
-                            Register
+                            <!-- Signup Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-lime-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 9v6m3-3h-6m-6 4.5a4.5 4.5 0 01-9 0v-.75a4.5 4.5 0 014.5-4.5h.75a4.5 4.5 0 014.5 4.5V15zM15 7.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+
                         </a>
                     
 
