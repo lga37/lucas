@@ -243,7 +243,7 @@
         </div>
 
 
-        <div class="flex items-center">
+        <div class="flex items-center mt-4">
             <a href="{{ route('home') }}" class="flex items-center gap-2">
                 <x-application-logo class="block h-9 w-auto" />
             </a>
