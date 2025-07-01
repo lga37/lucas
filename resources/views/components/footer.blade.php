@@ -248,7 +248,7 @@
                 <x-application-logo class="block h-9 w-auto" />
             </a>
              <!-- Redes sociais -->
-            <div class="flex items-center gap-4 ml-4">
+            <div class="flex items-center gap-4 ml-auto">
                 <a href="https://facebook.com" target="_blank" class="hover:text-blue-400 text-gray dark:text-white transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.676 0H1.327C.594 0 0 .593 0 1.326v21.348C0 23.406.593 24 1.327 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.797.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.316h3.587l-.467 3.622h-3.12V24h6.116C23.407 24 24 23.406 24 22.674V1.327C24 .593 23.407 0 22.676 0z"/></svg>
                 </a>
