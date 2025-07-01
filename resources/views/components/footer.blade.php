@@ -187,15 +187,16 @@
         <div class="grid mt-10 grid-cols-2 gap-4 text-sm">
 
             <!-- Coluna 1 -->
+
             <div>
                 <h3 class="font-semibold mb-4">Estados</h3>
-                <div class="flex flex-wrap pr-4">
-                    @foreach (['SP','MG','ES','PR','CE','SP','MG','ES','PR','CE','SP','MG','ES','PR','CE','SP','MG','ES','PR','CE',] as $uf)
-                    <a href="#" 
-                    class="ml-4 font-bold text-blue-500 hover:text-yellow-700">{{ $uf }}</a> 
+                <div class="flex flex-wrap gap-4 pr-4">
+                   @foreach (['SP','MG','ES','PR','CE','SP','MG','ES','PR','CE','SP','MG','ES','PR','CE','SP','MG','ES','PR','CE',] as $uf)
+                        <a href="#" class="font-bold text-blue-500 hover:text-yellow-700">{{ $uf }}</a> 
                     @endforeach
                 </div>
             </div>
+
 
             <!-- Coluna 2 -->
             <div>
@@ -246,12 +247,9 @@
             <a href="{{ route('home') }}" class="flex items-center gap-2">
                 <x-application-logo class="block h-9 w-auto" />
             </a>
-        </div>
-
-        <div class="mt-5 border-t border-gray-700 py-4 text-white flex items-center justify-between px-4 flex-wrap">
-            <!-- Redes sociais -->
-            <div class="flex items-center gap-4">
-                <a href="https://facebook.com" target="_blank" class="hover:text-blue-400 transition">
+             <!-- Redes sociais -->
+            <div class="flex items-center gap-4 ml-4">
+                <a href="https://facebook.com" target="_blank" class="hover:text-blue-400 text-gray dark:text-white transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.676 0H1.327C.594 0 0 .593 0 1.326v21.348C0 23.406.593 24 1.327 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.797.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.316h3.587l-.467 3.622h-3.12V24h6.116C23.407 24 24 23.406 24 22.674V1.327C24 .593 23.407 0 22.676 0z"/></svg>
                 </a>
                 <a href="https://twitter.com" target="_blank" class="hover:text-blue-300 transition">
@@ -264,6 +262,10 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.96 2.96 0 00-2.083-2.088C19.613 3.5 12 3.5 12 3.5s-7.613 0-9.415.598A2.96 2.96 0 00.502 6.186 30.43 30.43 0 000 12a30.43 30.43 0 00.502 5.814 2.96 2.96 0 002.083 2.088C4.387 20.5 12 20.5 12 20.5s7.613 0 9.415-.598a2.96 2.96 0 002.083-2.088A30.43 30.43 0 0024 12a30.43 30.43 0 00-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
                 </a>
             </div>
+        </div>
+
+        <div class="mt-5 border-t border-gray-700 py-4 text-white flex items-center justify-between px-4 flex-wrap">
+           
         
             <!-- Rodapé central -->
             <div class="text-center text-sm text-gray-400 mt-2">
@@ -285,11 +287,6 @@
                     </span>
 
             </div>
-
-
-
-
-
         </div>
         
        
