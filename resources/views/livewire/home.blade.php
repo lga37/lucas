@@ -27,11 +27,11 @@
     <div class="max-w-12xl mx-auto">
 
         <!-- Mobile Dropdown Menu with Attractive Background -->
-        <div class="block md:hidden px-2 py-5 space-y-4 rounded-xl shadow-md bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 border border-blue-200 dark:border-gray-700 print:hidden">
+        <div class="block md:hidden px-2 py-5 space-y-4 rounded-xl shadow-md bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 border border-green-200 dark:border-gray-700 print:hidden">
             <!-- Wrapper for Region Buttons -->
             <div class="flex flex-wrap gap-2 justify-center">
                 <!-- BRASIL Link -->
-                <x-nav-link class="w-16 text-center px-2 py-1 text-sm border border-blue-300 bg-white rounded-md text-blue-900 font-semibold shadow-sm hover:bg-blue-200 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-600"
+                <x-nav-link class="px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-green-600 dark:border-green-600 rounded-md  dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition"
                             href="{{ route('home') }}" :active="request()->routeIs('home')">
                     Brasil
                 </x-nav-link>
@@ -63,24 +63,24 @@
                     <div x-data="{ open: false }" class="relative">
                         <!-- Region Button -->
                         <button @click="open = !open"
-                                class="px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-800 dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                                class="px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-green-600 text-green-600 dark:border-green-600 rounded-md  dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
                             {{ Str::limit($regionName, 6, '') }}
                         </button>
 
                         <!-- Dropdown -->
                         <div x-show="open" @click.away="open = false"
                              x-transition
-                             class="absolute left-0 mt-2 z-50 min-w-max bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-md shadow-lg p-2">
+                             class="absolute left-0 mt-2 z-50 min-w-max bg-white dark:bg-gray-800 border border-green-600 dark:border-green-600 rounded-md shadow-lg p-2">
                             <div class="flex flex-wrap gap-1">
                                 @foreach ($ufs as $uf)
                                     @php
                                         $isActive = request()->route('uf') === $uf->uf;
                                     @endphp
                                     <a href="{{ route('byuf', ['uf' => $uf->uf]) }}"
-                                       class="w-12 text-center text-sm px-2 py-1 rounded border transition-all
+                                       class="w-12 text-center text-sm px-2 py-1 rounded border text-green-600 transition-all
                                             {{ $isActive 
                                                 ? 'font-bold border-blue-600 text-blue-800 bg-blue-100 dark:bg-blue-600 dark:text-white' 
-                                                : 'hover:bg-green-100 hover:text-green-800 hover:border-green-500 dark:hover:bg-green-900 dark:text-white border-gray-300 dark:border-gray-600' }}">
+                                                : 'hover:bg-green-100 hover:text-green-800 hover:border-green-500 dark:hover:bg-green-900 dark:text-white border-green-300 dark:border-green-600' }}">
                                         {{ $uf->uf }}
                                     </a>
                                 @endforeach
@@ -92,7 +92,7 @@
         </div>
 
 
-        <div class="px-4 py-3 mb-3 bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-lg shadow-md border border-blue-100 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 dark:border-gray-600 print:hidden mt-2">
+        <div class="px-4 py-3 mb-3 bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-lg shadow-md border border-green-600 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 dark:border-green-600 print:hidden mt-2">
             <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white leading-snug mb-1">
                 {{ $ads->total() }}
                 <span class="text-blue-600 dark:text-blue-400">Anúncios de Imóveis</span> em Leilão
@@ -114,14 +114,18 @@
     </div>
 
 
+<!-- Start mobile filter -->
+
         @if($ads->total() > 0)
 
 
-        <div class="flex flex-wrap items-center gap-1 mb-3 px-3 py-3 rounded-xl shadow-md border border-gray-200 bg-gradient-to-r from-white via-blue-50 to-white dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 print:hidden">
+       <div class="w-full overflow-x-auto sm:overflow-visible sm:flex-wrap flex-nowrap flex items-center gap-1 mb-3 px-1 py-3 rounded-xl shadow-md border border-green-600 bg-gradient-to-r from-white via-blue-50 to-white dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 print:hidden">
+
+
             <!-- Tipos -->
             <div x-data="{ open: false }" x-cloak class="relative">
                 <button @click="open = !open"
-                    class=" px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-800 dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                    class=" px-1 py-1 text-xs md:px-2 md:text-sm bg-white dark:bg-gray-700 border border-green-600 dark:border-green-600 rounded-md text-green-600 dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
                     Tipos
                 </button>
 
@@ -139,7 +143,7 @@
             <!-- Campos -->
             <div x-data="{ open: false }" x-cloak class="relative">
                 <button @click="open = !open"
-                    class="px-2 py-1 text-sm bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-800 dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                    class="px-1 py-1 text-xs md:px-2 md:text-sm bg-white dark:bg-gray-700 border border-green-600 dark:border-green-600 rounded-md text-green-600 dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition">
                     Campos
                 </button>
 
@@ -156,52 +160,74 @@
 
             <!-- Ordenação -->
             <select wire:model.live="sortBy"
-                class="px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700">
+                class="px-1 py-1 md:px-2 md:text-sm border border-green-600 bg-white text-xs rounded text-green-600  hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-gray-700 dark:text-white">
                 @foreach ($this->sortable as $key => $option)
                 <option value="{{ $key }}">{{ $option['label'] }}</option>
                 @endforeach
             </select>
 
             <!-- View Mode Toggle (Lista / Grid) -->
-            <div class="flex items-center gap-2">
+            <div class="inline-flex items-center gap-0 border border-green-600 rounded-md overflow-hidden">
                 <!-- Lista Button -->
                 <button wire:click="$set('modoBy', 'lista')" 
-                    class="flex items-center gap-1 px-1 py-1 text-sm rounded-md transition border
+                    class="flex items-center gap-2 px-1 py-1 text-xs md:px-2 md:text-sm transition text-green-600 dark:text-white
                            {{ $modoBy === 'lista' 
                                ? 'font-semibold' 
-                               : 'text-gray-500 hover:bg-gray-100 border-gray-200' }}">
+                               : 'text-gray-500 hover:bg-gray-100' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 2.5 4h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 4.5z"/>
                     </svg>
-                    <!-- Lista -->
                 </button>
 
                 <!-- Grid Button -->
                 <button wire:click="$set('modoBy', 'grid')" 
-                    class="flex items-center gap-1 px-1 py-1 text-sm rounded-md transition border
-                           {{ $modoBy === 'grid' 
-                               ? 'bg-blue-100 text-blue-700 border-blue-300 font-semibold' 
-                               : 'text-gray-500 hover:bg-gray-100 border-gray-200' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M1 2a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm0 7a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V9zm7-7a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V2zm0 7a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V9z"/>
-                    </svg>
-                    <!-- Grid -->
-                </button>
+                class="flex items-center gap-0 px-1 py-1 text-xs md:px-2 md:text-sm transition text-green-600 dark:text-white
+                       border-l border-green-600
+                       {{ $modoBy === 'grid' 
+                           ? 'font-semibold bg-green-100' 
+                           : 'text-gray-500 hover:bg-gray-100' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3 3h6v6H3V3zm8 0h6v6h-6V3zM3 11h6v6H3v-6zm8 0h6v6h-6v-6z" />
+                </svg>
+            </button>
+
             </div>
 
+
         
-            <button onclick="window.print()" class="flex items-center gap-1 px-2 py-1 text-sm text-gray-800 bg-white border rounded hover:bg-gray-100 dark:bg-gray-700 dark:text-white print:hidden">
+          <!--   <button onclick="window.print()" class="flex items-center gap-1 px-2 py-1 text-sm text-gray-800 bg-white border border-green-600 rounded hover:bg-gray-100 dark:bg-gray-700 dark:text-green-600 print:hidden text-green-600 dark:text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 18v4h12v-4M6 14h12" />
                 </svg>
             </button>
+ -->
+              <!-- Per Page -->
+                <div class="flex items-center gap-0 sm:hidden">
+                    <select id="perPage" wire:model.live="perPage"
+                        class="min-w-[50px] px-1 py-1 border border-green-600 bg-white text-green-700 text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:text-white dark:bg-gray-700">
+                        <option value="10">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+
+               <div class="flex items-center text-[10px] text-gray-700 border border-green-600 px-1 rounded dark:text-white whitespace-nowrap  text-ellipsis sm:hidden">
+                <span class="truncate">
+                    {{ $ads->firstItem() }}-{{ $ads->lastItem() }}
+                </br>
+                    de {{ $ads->total() }}
+                </span>
+            </div>
+
+
+
                     <!-- Botão Anterior -->
                     <button
                         wire:click="previousPage"
                         wire:loading.attr="disabled"
-                        class="px-1 py-1 border text-sm rounded-md transition-all
+                        class="px-1 py-1 border border-green-600 text-sm rounded-md transition-all
                                focus:outline-none focus:ring-1 focus:ring-blue-500
-                               disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-50
+                               disabled:text-gray-400 disabled:border-green-600 disabled:bg-gray-50
                                enabled:text-blue-600 enabled:border-gray-300 enabled:bg-white enabled:hover:bg-gray-100 dark:bg-gray-700 sm:hidden"
                         {{ $ads->onFirstPage() ? 'disabled' : '' }}
                     >
@@ -212,23 +238,23 @@
                     <button
                         wire:click="nextPage"
                         wire:loading.attr="disabled"
-                        class="px-1 py-1 border text-sm rounded-md transition-all
+                        class="px-1 py-1 border border-green-600 text-green-600 text-sm rounded-md transition-all
                                focus:outline-none focus:ring-1 focus:ring-blue-500
                                disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-50
-                               enabled:text-blue-600 enabled:border-gray-300 enabled:bg-white enabled:hover:bg-gray-100 dark:bg-gray-700 sm:hidden"
+                               enabled:text-green-600 enabled:border-green-600 enabled:bg-white enabled:hover:bg-gray-100 dark:bg-gray-700 sm:hidden"
                         {{ !$ads->hasMorePages() ? 'disabled' : '' }}
                     >
                         →
                     </button>           
-
+            <!-- End mobile filters -->
 
             <!-- Paginação -->
-             <div class="ml-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-700 sm:flex hidden">
+             <div class="ml-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-sm sm:flex hidden">
 
                 <!-- Per Page -->
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-0">
                     <select id="perPage" wire:model.live="perPage"
-                        class="min-w-[90px] px-1 py-1 border border-gray-300 bg-white text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:text-white dark:bg-gray-700">
+                        class="min-w-[90px] px-1 py-1 border border-green-600 bg-white text-green-700 text-sm rounded hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:text-white dark:bg-gray-700">
                         <option value="10">20/pág</option>
                         <option value="50">50/pág</option>
                         <option value="100">100/pág</option>
@@ -247,9 +273,9 @@
                     <button
                         wire:click="previousPage"
                         wire:loading.attr="disabled"
-                        class="px-1 py-1 border text-sm rounded-md transition-all
+                        class="px-1 py-1 border border-green-600 text-sm rounded-md transition-all
                                focus:outline-none focus:ring-1 focus:ring-blue-500
-                               disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-50
+                               disabled:text-gray-400 disabled:border-green-600 disabled:bg-gray-50
                                enabled:text-blue-600 enabled:border-gray-300 enabled:bg-white enabled:hover:bg-gray-100 dark:bg-gray-700"
                         {{ $ads->onFirstPage() ? 'disabled' : '' }}
                     >
@@ -260,10 +286,10 @@
                     <button
                         wire:click="nextPage"
                         wire:loading.attr="disabled"
-                        class="px-1 py-1 border text-sm rounded-md transition-all
+                        class="px-1 py-1 border border-green-600 text-green-600 text-sm rounded-md transition-all
                                focus:outline-none focus:ring-1 focus:ring-blue-500
-                               disabled:text-gray-400 disabled:border-gray-200 disabled:bg-gray-50
-                               enabled:text-blue-600 enabled:border-gray-300 enabled:bg-white enabled:hover:bg-gray-100 dark:bg-gray-700"
+                               disabled:text-gray-400 disabled:border-green-200 disabled:bg-gray-50
+                               enabled:text-green-600 enabled:border-green-300 dark:bg-gray-700"
                         {{ !$ads->hasMorePages() ? 'disabled' : '' }}
                     >
                         Próximo →

@@ -13,7 +13,7 @@
                 <!-- Navigation Links for desktop-->
                 <div class="flex items-center space-x-0 sm:-my-px sm:ms-10 sm:flex hidden inline-block print:hidden">
                     <x-nav-link 
-                    class="px-2 py-1 h-9 border border-blue-200 rounded-md text-blue-800 hover:bg-blue-200 mr-2"
+                    class="px-2 py-1 h-9 border border-blue-200 rounded-md text-blue-800 hover:bg-blue-200  mr-2"
                     href="{{ route('home') }}" :active="request()->routeIs('home')">
                         BRASIL
                     </x-nav-link>
@@ -70,14 +70,14 @@
                                 }
                                 
                             @endphp
-                            <div class="grid grid-cols-{{ $qtd }} gap-1 border border-gray-300 rounded-md shadow-sm bg-white p-1 dark:bg-gray-700">
+                            <div class="grid grid-cols-{{ $qtd }} gap-1 border border-green-600 rounded-md shadow-sm bg-white p-1 dark:bg-gray-700">
                                 @foreach ($ufs as $uf)
                                     @php
                                         $isActive = request()->route('uf') === $uf->uf;
                                     @endphp
                                     <a 
                                         href="{{ route('byuf', ['uf' => $uf->uf]) }}" 
-                                        class="text-center text-sm px-1 h-5 py-0.5 items-center border border-gray-200 rounded 
+                                        class="text-center text-sm px-1 h-5 py-0.5 items-center border text-green-800 dark:text-white  border-green-800 rounded 
                                         leading-none {{ $isActive ? 'font-bold border-blue-900 text-blue-900 bg-blue-200' : 'hover:bg-green-200 hover:text-green-800 hover:border-green-800' }}"
                                         >
                                         {{ $uf->uf }}
