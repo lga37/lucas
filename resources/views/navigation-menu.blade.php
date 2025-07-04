@@ -13,9 +13,9 @@
                 <!-- Navigation Links for desktop-->
                 <div class="flex items-center space-x-0 sm:-my-px sm:ms-10 sm:flex hidden inline-block print:hidden">
                     <x-nav-link 
-                    class="px-2 py-1 h-9 border border-blue-200 rounded-md text-blue-800 hover:bg-blue-200  mr-2"
+                    class="px-1 py-1 border border-blue-200 rounded-md text-blue-800 hover:bg-blue-200  mr-2"
                     href="{{ route('home') }}" :active="request()->routeIs('home')">
-                        BRASIL
+                        BRASIL1
                     </x-nav-link>
 
                  
@@ -75,13 +75,25 @@
                                     @php
                                         $isActive = request()->route('uf') === $uf->uf;
                                     @endphp
+
                                     <a 
-                                        href="{{ route('byuf', ['uf' => $uf->uf]) }}" 
-                                        class="text-center text-sm px-1 h-5 py-0.5 items-center border text-green-800 dark:text-white  border-green-800 rounded 
-                                        leading-none {{ $isActive ? 'font-bold border-blue-900 text-blue-900 bg-blue-200' : 'hover:bg-green-200 hover:text-green-800 hover:border-green-800' }}"
+                                  href="{{ route('byuf', ['uf' => $uf->uf]) }}" 
+                                  class="text-center text-xs items-center border text-green-800 dark:text-white border-green-800 rounded {{ $isActive ? 'font-bold border-blue-900 text-blue-900 bg-blue-200' : 'hover:bg-green-200 hover:text-green-800 hover:border-green-800' }} hidden tablet-show-only "
+                                >
+                                  {{ $uf->uf }}
+                                </a>
+
+
+
+                                <a 
+                                          href="{{ route('byuf', ['uf' => $uf->uf]) }}" 
+                                          class="text-center text-sm px-1 h-5 py-0.5 items-center border text-green-800 dark:text-white border-green-800 rounded 
+                                                 leading-none {{ $isActive ? 'font-bold border-blue-900 text-blue-900 bg-blue-200' : 'hover:bg-green-200 hover:text-green-800 hover:border-green-800' }} tablet-hide-only"
                                         >
-                                        {{ $uf->uf }}
-                                    </a>
+                                          {{ $uf->uf }}
+                                </a>
+
+
                                 @endforeach
                             </div>
                         @endforeach
@@ -91,13 +103,13 @@
                     <div class="flex items-center ml-4 space-x-2">
                         <a
                         href="{{ route('login') }}"
-                        class="px-2 py-1 h-9 border border-blue-300 rounded-md text-blue-800 hover:bg-blue-200 ml-2 dark:text-white"
+                        class="px-1 py-1 text-sm border border-blue-300 rounded-md text-blue-800 hover:bg-blue-200 ml-2 dark:text-white"
                         >
                             Login
                         </a>
                         <a
                             href="{{ route('register') }}"
-                            class="px-2 py-1 h-9 border border-blue-300 rounded-md text-blue-800 hover:bg-blue-200 mr-2 dark:text-white"
+                            class="px-1 py-1 text-sm border border-blue-300 rounded-md text-blue-800 hover:bg-blue-200 ml-2 dark:text-white"
                         >
                             Register
                         </a>
@@ -107,15 +119,15 @@
 
                     @endguest
                     <!-- With Alpine.js -->
-                    <button
+                   <button
                         x-data="{ dark: document.documentElement.classList.contains('dark') }"
                         @click="dark = !dark;
                                 document.documentElement.classList.toggle('dark');
                                 localStorage.setItem('theme', dark ? 'dark' : 'light')"
-                        class="px-3 py-1 px-2 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded sm:flex hidden"
+                        class="py-1 px-1 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded sm:flex hidden dl-margin-left"
                     >
-                        <span x-show="!dark">🌞 Light</span>
-                        <span x-show="dark">🌙 Dark</span>
+                        <span x-show="!dark">🌞</span>
+                        <span x-show="dark">🌙</span>
                     </button>
                     @adm
                     <div class="flex items-center ml-4 space-x-2">

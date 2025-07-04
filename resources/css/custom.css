@@ -1,3 +1,28 @@
-.text-lime-600{
-	color: #65A30D;
+@layer utilities {
+
+	.text-lime-600{
+			color: #65A30D;
+				}
+.dl-margin-left {
+	margin-left: 2px!important;
 }
+  @media (min-width: 640px) and (max-width: 1024px) and (hover: none) and (pointer: coarse) {
+    .tablet-show-only {
+    	font-size: xx-small;
+      display: block !important;
+    }
+    .tablet-hide-only {
+      display: none !important;
+    }
+    .logocls1{
+    	font-size: 35px!important;
+    }
+    .logocls2{
+		font-size: 30px!important;
+    }
+    .logocls3{
+		font-size: 30px!important;
+    }
+  }
+}
+

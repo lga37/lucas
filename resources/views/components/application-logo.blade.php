@@ -1,14 +1,14 @@
 <span class="flex items-center space-x-1">
   <span class="flex items-center text-4xl tracking-tight antialiased font-sans font-extrabold">
-      <span class="text-green-600 text-5xl">g</span>
-      <span class="text-yellow-500">a</span>
-      <span class="text-cyan-500">r</span>
-      <span class="text-green-600">i</span>
-      <span class="text-yellow-500">m</span>
-      <span class="text-blue-500">p</span>
+      <span class="text-green-600 text-5xl logocls1">g</span>
+      <span class="text-yellow-500 logocls2">a</span>
+      <span class="text-cyan-500 logocls2">r</span>
+      <span class="text-green-600 logocls2">i</span>
+      <span class="text-yellow-500 logocls2">m</span>
+      <span class="text-blue-500 logocls2">p</span>
       <div class="ml-0 flex bg-gray-200 items-center border-1 border-gray-400 rounded px-1">
-      <span class="text-gray-600 shadow-lg">I</span>
-      <span class="text-gray-600">A</span>
+      <span class="text-gray-600 shadow-lg logocls3">I</span>
+      <span class="text-gray-600 logocls3">A</span>
       </div>
   </span>
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
