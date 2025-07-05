@@ -70,8 +70,8 @@
                         <!-- Dropdown -->
                         <div x-show="open" @click.away="open = false"
                              x-transition
-                             class="absolute left-0 mt-2 z-50 min-w-max bg-white dark:bg-gray-800 border border-green-600 dark:border-green-600 rounded-md shadow-lg p-2">
-                            <div class="flex flex-wrap gap-1">
+                             class="absolute left-0 mt-2 z-50 max-w-screen-sm w-max bg-white dark:bg-gray-800 border border-green-600 dark:border-green-600 rounded-md shadow-lg p-2">
+                            <div class="flex flex-wrap gap-1 max-w-full">
                                 @foreach ($ufs as $uf)
                                     @php
                                         $isActive = request()->route('uf') === $uf->uf;

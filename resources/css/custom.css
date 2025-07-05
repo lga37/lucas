@@ -8,20 +8,20 @@
 }
   @media (min-width: 640px) and (max-width: 1024px) and (hover: none) and (pointer: coarse) {
     .tablet-show-only {
-    	font-size: xx-small;
+    	/*font-size: xx-small;*/
       display: block !important;
     }
     .tablet-hide-only {
       display: none !important;
     }
     .logocls1{
-    	font-size: 35px!important;
+    	/*font-size: 35px!important;*/
     }
     .logocls2{
-		font-size: 30px!important;
+		/*font-size: 30px!important;*/
     }
     .logocls3{
-		font-size: 30px!important;
+		/*font-size: 30px!important;*/
     }
   }
 }

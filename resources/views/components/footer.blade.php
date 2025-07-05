@@ -122,7 +122,7 @@
             </div>
 
         </div>
-
+<div class="grid grid-cols-2 gap-4 mt-8 gap-4 text-sm">
 
         <div class="flex items-center">
             <a href="{{ route('home') }}" class="flex items-center gap-2">
@@ -130,9 +130,9 @@
             </a>
         </div>
 
-        <div class="mt-5 border-t border-gray-700 py-4 text-white flex items-center justify-between px-4 flex-wrap">
-            <!-- Redes sociais -->
-            <div class="flex items-center gap-4">
+<div>
+    
+  <div class="flex items-center gap-4 mt-4">
                 <a href="https://facebook.com" target="_blank" class="hover:text-blue-400 transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.676 0H1.327C.594 0 0 .593 0 1.326v21.348C0 23.406.593 24 1.327 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.797.143v3.24l-1.918.001c-1.504 0-1.796.716-1.796 1.765v2.316h3.587l-.467 3.622h-3.12V24h6.116C23.407 24 24 23.406 24 22.674V1.327C24 .593 23.407 0 22.676 0z"/></svg>
                 </a>
@@ -146,6 +146,14 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.96 2.96 0 00-2.083-2.088C19.613 3.5 12 3.5 12 3.5s-7.613 0-9.415.598A2.96 2.96 0 00.502 6.186 30.43 30.43 0 000 12a30.43 30.43 0 00.502 5.814 2.96 2.96 0 002.083 2.088C4.387 20.5 12 20.5 12 20.5s7.613 0 9.415-.598a2.96 2.96 0 002.083-2.088A30.43 30.43 0 0024 12a30.43 30.43 0 00-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
                 </a>
             </div>
+
+</div>
+
+    </div>
+
+        <div class="mt-5 border-t border-gray-700 py-4 text-white flex items-center justify-between px-4 flex-wrap">
+            <!-- Redes sociais -->
+          
         
             <!-- Rodapé central -->
             <div class="text-center text-sm text-gray-400 mt-2">

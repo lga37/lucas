@@ -15,7 +15,7 @@
                     <x-nav-link 
                     class="px-1 py-1 border border-blue-200 rounded-md text-blue-800 hover:bg-blue-200  mr-2"
                     href="{{ route('home') }}" :active="request()->routeIs('home')">
-                        BRASIL1
+                        BRASIL
                     </x-nav-link>
 
                  
@@ -59,8 +59,60 @@
 
                     @endphp
 
+                @php
+                    $ufs = collect([
+                        ['uf' => 'AC', 'regiao_id' => 1], ['uf' => 'AL', 'regiao_id' => 2], ['uf' => 'AM', 'regiao_id' => 1],
+                        ['uf' => 'AP', 'regiao_id' => 1], ['uf' => 'BA', 'regiao_id' => 2], ['uf' => 'CE', 'regiao_id' => 2],
+                        ['uf' => 'DF', 'regiao_id' => 3], ['uf' => 'ES', 'regiao_id' => 4], ['uf' => 'GO', 'regiao_id' => 3],
+                        ['uf' => 'MA', 'regiao_id' => 2], ['uf' => 'MG', 'regiao_id' => 4], ['uf' => 'MS', 'regiao_id' => 3],
+                        ['uf' => 'MT', 'regiao_id' => 3], ['uf' => 'PA', 'regiao_id' => 1], ['uf' => 'PB', 'regiao_id' => 2],
+                        ['uf' => 'PE', 'regiao_id' => 2], ['uf' => 'PI', 'regiao_id' => 2], ['uf' => 'PR', 'regiao_id' => 5],
+                        ['uf' => 'RJ', 'regiao_id' => 4], ['uf' => 'RN', 'regiao_id' => 2], ['uf' => 'RO', 'regiao_id' => 1],
+                        ['uf' => 'RR', 'regiao_id' => 1], ['uf' => 'RS', 'regiao_id' => 5], ['uf' => 'SC', 'regiao_id' => 5],
+                        ['uf' => 'SE', 'regiao_id' => 2], ['uf' => 'SP', 'regiao_id' => 4], ['uf' => 'TO', 'regiao_id' => 1],
+                    ])->map(fn($uf) => (object) $uf);
 
-                    <div class="ml-2 flex gap-1 items-center ">
+                    $ufsGrouped = $ufs->sortBy('uf')->sortByDesc('regiao_id')->groupBy('regiao_id');
+                @endphp
+
+                @foreach ($ufsGrouped as $regiao_id => $ufs)
+                    @php
+                        $regionName = match($regiao_id) {
+                            1 => 'Norte', 2 => 'Nordeste', 3 => 'Centro-Oeste', 4 => 'Sudeste', 5 => 'Sul',
+                        };
+                    @endphp
+
+                    <!-- Region Dropdown -->
+                   <div x-data="{ open: false }" class="relative overflow-visible">
+                        <!-- Region Button -->
+                        <button @click="open = !open"
+                                class="px-2 py-1 mr-1 text-sm bg-white dark:bg-gray-700 border border-green-600 text-green-600 dark:border-green-600 rounded-md dark:text-white font-medium shadow hover:bg-gray-100 dark:hover:bg-gray-600 transition hidden tablet-show-only">
+                            {{ Str::limit($regionName, 6, '') }}
+                        </button>
+
+                        <!-- Dropdown -->
+                        <div x-show="open" @click.away="open = false"
+                             x-transition
+                             class="absolute left-0 mt-2 z-50 max-w-screen-sm w-max bg-white dark:bg-gray-800 border border-green-600 dark:border-green-600 rounded-md shadow-lg p-2">
+                            <div class="flex flex-wrap gap-1 max-w-full">
+                                @foreach ($ufs as $uf)
+                                    @php
+                                        $isActive = request()->route('uf') === $uf->uf;
+                                    @endphp
+                                    <a href="{{ route('byuf', ['uf' => $uf->uf]) }}"
+                                       class="w-12 text-center text-sm px-2 py-1 rounded border text-green-600 transition-all
+                                            {{ $isActive 
+                                                ? 'font-bold border-blue-600 text-blue-800 bg-blue-100 dark:bg-blue-600 dark:text-white' 
+                                                : 'hover:bg-green-100 hover:text-green-800 hover:border-green-500 dark:hover:bg-green-900 dark:text-white border-green-300 dark:border-green-600' }}">
+                                        {{ $uf->uf }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                @endforeach
+                    <div class="ml-2 flex gap-1 items-center tablet-hide-only">
                         @foreach ($ufsGrouped as $regiao_id => $ufs)
                             @php
                                 $qtd = ceil($ufs->count() / 2) ;
@@ -75,16 +127,6 @@
                                     @php
                                         $isActive = request()->route('uf') === $uf->uf;
                                     @endphp
-
-                                    <a 
-                                  href="{{ route('byuf', ['uf' => $uf->uf]) }}" 
-                                  class="text-center text-xs items-center border text-green-800 dark:text-white border-green-800 rounded {{ $isActive ? 'font-bold border-blue-900 text-blue-900 bg-blue-200' : 'hover:bg-green-200 hover:text-green-800 hover:border-green-800' }} hidden tablet-show-only "
-                                >
-                                  {{ $uf->uf }}
-                                </a>
-
-
-
                                 <a 
                                           href="{{ route('byuf', ['uf' => $uf->uf]) }}" 
                                           class="text-center text-sm px-1 h-5 py-0.5 items-center border text-green-800 dark:text-white border-green-800 rounded 
