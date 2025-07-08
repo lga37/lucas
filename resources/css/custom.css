@@ -3,9 +3,9 @@
 	.text-lime-600{
 			color: #65A30D;
 				}
-.dl-margin-left {
-	margin-left: 2px!important;
-}
+    .dl-margin-left {
+    	margin-left: 8px!important;
+    }
   @media (min-width: 640px) and (max-width: 1024px) and (hover: none) and (pointer: coarse) {
     .tablet-show-only {
     	/*font-size: xx-small;*/

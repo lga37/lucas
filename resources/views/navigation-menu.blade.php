@@ -161,16 +161,7 @@
 
                     @endguest
                     <!-- With Alpine.js -->
-                   <button
-                        x-data="{ dark: document.documentElement.classList.contains('dark') }"
-                        @click="dark = !dark;
-                                document.documentElement.classList.toggle('dark');
-                                localStorage.setItem('theme', dark ? 'dark' : 'light')"
-                        class="py-1 px-1 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded sm:flex hidden dl-margin-left"
-                    >
-                        <span x-show="!dark">🌞</span>
-                        <span x-show="dark">🌙</span>
-                    </button>
+                  <x-theme-toggle class="py-1 px-1 bg-gray-200 dark:bg-gray-700 sm:flex hidden dl-margin-left" />
                     @adm
                     <div class="flex items-center ml-4 space-x-2">
                     <x-nav-link class="px-2 py-1 h-9 border border-red-200 rounded-md text-red-800 hover:bg-red-200" href="#">Admin</x-nav-link>
@@ -316,16 +307,8 @@
 
                     </div>
 
-                <button
-                        x-data="{ dark: document.documentElement.classList.contains('dark') }"
-                        @click="dark = !dark;
-                                document.documentElement.classList.toggle('dark');
-                                localStorage.setItem('theme', dark ? 'dark' : 'light')"
-                        class="px-1 py-1 text-black dark:text-white rounded block md:hidden md:flex"
-                    >
-                        <span x-show="!dark">🌞</span>
-                        <span x-show="dark">🌙</span>
-                </button>
+                <x-theme-toggle class="block md:hidden md:flex" />
+
             <!-- Hamburger -->
            <!--  <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
